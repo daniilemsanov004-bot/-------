@@ -19,13 +19,15 @@ import Golden from "./pages/Golden";
 import Velora from "./pages/Velora";
 import Skyline from "./pages/Skyline";
 import Evermont from "./pages/Evermont";
-import Login from "./pages/Login"
-import Register from "./pages/Register"
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 import { MyContext } from "./Context";
 import Admin from "./pages/Admin";
 import CreateCard from "./components/CreateCard";
 import ChangeCard from "./components/ChangeCard";
 import AdminCards from "./pages/AdminCards";
+
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
 
@@ -52,6 +54,8 @@ const App = () => {
 
   return (
     <>
+      <ScrollToTop />
+
       <Nav />
       <Burger />
 
@@ -85,7 +89,6 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error />} />
-
 
         {isAdmin && (
           <>
