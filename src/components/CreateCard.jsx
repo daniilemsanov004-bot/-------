@@ -5,7 +5,10 @@ import { MyContext } from "../Context";
 
 const CreateCard = () => {
 
-  const { createCard } = useContext(MyContext);
+  const {
+    createCard,
+    uploadImage
+  } = useContext(MyContext);
 
   const {
     register,
@@ -13,9 +16,19 @@ const CreateCard = () => {
     reset
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+    if (!data.image || !data.image.length) {
+      alert("Выбери картинку");
+      return;
+    }
+
+    const file = data.image[0];
+
+    const imageUrl = await uploadImage(file);
 
     const newCard = {
+
       title: {
         ru: data.titleRu,
         en: data.titleEn,
@@ -28,11 +41,7 @@ const CreateCard = () => {
         uz: data.descriptionUz,
       },
 
-      image: data.image,
-
-      bedroomIcon: "/BACKGROUND_2.svg",
-      bathroomIcon: "/Icon.svg",
-      typeIcon: "/Icon (1).svg",
+      image: imageUrl,
 
       bedrooms: {
         ru: data.bedroomsRu,
@@ -56,7 +65,7 @@ const CreateCard = () => {
       link: data.link,
     };
 
-    createCard(newCard);
+    await createCard(newCard);
 
     reset();
   };
@@ -72,8 +81,6 @@ const CreateCard = () => {
         <h1 className={s.mainTitle}>
           Create Property
         </h1>
-
-     
 
         <div className={s.box}>
           <h2 className={s.title}>Title RU</h2>
@@ -108,8 +115,6 @@ const CreateCard = () => {
           />
         </div>
 
-     
-
         <div className={s.box}>
           <h2 className={s.title}>Description RU</h2>
 
@@ -140,20 +145,16 @@ const CreateCard = () => {
           />
         </div>
 
-    
-
         <div className={s.box}>
           <h2 className={s.title}>Image</h2>
 
           <input
             className={s.inp}
-            type="text"
-            placeholder="/image.png"
-            {...register("image")}
+            type="file"
+            accept="image/*"
+            {...register("image", { required: true })}
           />
         </div>
-
-   
 
         <div className={s.row}>
 
@@ -192,8 +193,6 @@ const CreateCard = () => {
 
         </div>
 
-     
-
         <div className={s.row}>
 
           <div className={s.box}>
@@ -230,8 +229,6 @@ const CreateCard = () => {
           </div>
 
         </div>
-
-      
 
         <div className={s.row}>
 
@@ -270,8 +267,6 @@ const CreateCard = () => {
 
         </div>
 
-    
-
         <div className={s.box}>
           <h2 className={s.title}>Price</h2>
 
@@ -282,8 +277,6 @@ const CreateCard = () => {
             {...register("price")}
           />
         </div>
-
-      
 
         <div className={s.box}>
           <h2 className={s.title}>Link</h2>

@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom'
 import s from './Featured.module.css'
 import { motion } from "framer-motion"
-
+import { useTranslation } from 'react-i18next'
+import { useContext, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay, Mousewheel } from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 
-import { useTranslation } from "react-i18next"
-import { useContext, useEffect } from 'react'
-import { MyContext } from '../Context'
+import { MyContext } from '../Context';
 
 const Feautured = () => {
 
@@ -25,7 +24,7 @@ const Feautured = () => {
         getCards();
     }, []);
 
-    const { t, i18n } = useTranslation()
+    const { t, i18n } = useTranslation();
 
     return (
         <section
@@ -66,7 +65,7 @@ const Feautured = () => {
                 modules={[Navigation, Autoplay, Mousewheel]}
                 spaceBetween={30}
                 slidesPerView={3}
-                loop={true}
+                loop={properties.length > 3}
                 navigation={true}
 
                 mousewheel={{
@@ -97,7 +96,9 @@ const Feautured = () => {
 
                 {properties.map((item) => (
 
-                    <SwiperSlide key={item.id}>
+                    <SwiperSlide
+                        key={item.id}
+                    >
 
                         <motion.div
                             className={s.card}
@@ -144,7 +145,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.bedroomIcon}
+                                        src="/BACKGROUND_2.svg"
                                         alt=""
                                     />
 
@@ -155,7 +156,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.bathroomIcon}
+                                        src="/Icon.svg"
                                         alt=""
                                     />
 
@@ -166,7 +167,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.typeIcon}
+                                        src="/Icon (1).svg"
                                         alt=""
                                     />
 
@@ -194,7 +195,7 @@ const Feautured = () => {
                                     to={item.link}
                                     className={s.linkk}
                                 >
-                                    {t("viewDetails")}
+                                    {t("viewProperty")}
                                 </Link>
 
                             </div>
@@ -222,4 +223,4 @@ const Feautured = () => {
     )
 }
 
-export default Feautured
+export default Feautured    

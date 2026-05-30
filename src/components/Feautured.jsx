@@ -65,7 +65,7 @@ const Feautured = () => {
                 modules={[Navigation, Autoplay, Mousewheel]}
                 spaceBetween={30}
                 slidesPerView={3}
-                loop={true}
+                loop={properties.length > 3}
                 navigation={true}
 
                 mousewheel={{
@@ -145,7 +145,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.bedroomIcon}
+                                        src="/BACKGROUND_2.svg"
                                         alt=""
                                     />
 
@@ -156,7 +156,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.bathroomIcon}
+                                        src="/Icon.svg"
                                         alt=""
                                     />
 
@@ -167,7 +167,7 @@ const Feautured = () => {
                                 <span>
 
                                     <img
-                                        src={item.typeIcon}
+                                        src="/Icon (1).svg"
                                         alt=""
                                     />
 
@@ -223,4 +223,4 @@ const Feautured = () => {
     )
 }
 
-export default Feautured
+export default Feautured    

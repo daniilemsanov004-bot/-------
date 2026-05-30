@@ -1,4 +1,4 @@
-import axios from "axios";
+import { supabase } from "./supabase";
 import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -16,7 +16,6 @@ export const MyProvider = ({ children }) => {
 
     const adminPassword = "935391813";
 
-    const urlServer = "http://localhost:3001/properties";
 
     useEffect(() => {
 
@@ -67,9 +66,57 @@ export const MyProvider = ({ children }) => {
 
         try {
 
-            const response = await axios.get(urlServer);
+            const { data, error } = await supabase
+                .from("cardss")
+                .select("*");
 
-            setCards(response.data);
+            if (error) throw error;
+
+            const formattedData = data.map((item) => ({
+                id: item.id,
+
+                title: {
+                    ru: item.title_ru,
+                    en: item.title_en,
+                    uz: item.title_uz,
+                },
+
+                description: {
+                    ru: item.description_ru,
+                    en: item.description_en,
+                    uz: item.description_uz,
+                },
+
+                bedrooms: {
+                    ru: item.bedrooms_ru,
+                    en: item.bedrooms_en,
+                    uz: item.bedrooms_uz,
+                },
+
+                bathrooms: {
+                    ru: item.bathrooms_ru,
+                    en: item.bathrooms_en,
+                    uz: item.bathrooms_uz,
+                },
+
+                type: {
+                    ru: item.type_ru,
+                    en: item.type_en,
+                    uz: item.type_uz,
+                },
+
+                image: item.image,
+                price: item.price,
+                link: item.link,
+
+                bedroomIcon: "/BACKGROUND_2.svg",
+                bathroomIcon: "/Icon.svg",
+                typeIcon: "/Icon (1).svg",
+            }));
+
+            console.log(formattedData);
+
+            setCards(formattedData);
 
         } catch (error) {
 
@@ -78,15 +125,59 @@ export const MyProvider = ({ children }) => {
             toast.error("Ошибка загрузки");
         }
     };
-
     const getCardId = async (id) => {
 
         try {
 
-            const response =
-                await axios.get(`${urlServer}/${id}`);
+            const { data, error } = await supabase
+                .from("cardss")
+                .select("*")
+                .eq("id", id)
+                .single();
 
-            setCardId(response.data);
+            if (error) throw error;
+
+            const formattedCard = {
+                id: data.id,
+
+                title: {
+                    ru: data.title_ru,
+                    en: data.title_en,
+                    uz: data.title_uz,
+                },
+
+                description: {
+                    ru: data.description_ru,
+                    en: data.description_en,
+                    uz: data.description_uz,
+                },
+
+                image: data.image,
+
+                bedrooms: {
+                    ru: data.bedrooms_ru,
+                    en: data.bedrooms_en,
+                    uz: data.bedrooms_uz,
+                },
+
+                bathrooms: {
+                    ru: data.bathrooms_ru,
+                    en: data.bathrooms_en,
+                    uz: data.bathrooms_uz,
+                },
+
+                type: {
+                    ru: data.type_ru,
+                    en: data.type_en,
+                    uz: data.type_uz,
+                },
+
+                price: data.price,
+
+                link: data.link,
+            };
+
+            setCardId(formattedCard);
 
         } catch (error) {
 
@@ -100,7 +191,12 @@ export const MyProvider = ({ children }) => {
 
         try {
 
-            await axios.delete(`${urlServer}/${id}`);
+            const { error } = await supabase
+                .from("cardss")
+                .delete()
+                .eq("id", id);
+
+            if (error) throw error;
 
             getCards();
 
@@ -118,62 +214,95 @@ export const MyProvider = ({ children }) => {
 
         try {
 
-            const response = await axios.get(urlServer);
+            const { error } = await supabase
+                .from("cardss")
 
-            const properties = response.data;
+                .insert([
+                    {
+                        title_ru: data.title.ru,
+                        title_en: data.title.en,
+                        title_uz: data.title.uz,
 
-            const lastId = properties.length
-                ? Math.max(
-                    ...properties.map(
-                        item => Number(item.id) || 0
-                    )
-                )
-                : 0;
+                        description_ru: data.description.ru,
+                        description_en: data.description.en,
+                        description_uz: data.description.uz,
 
-            const newCard = {
+                        bedrooms_ru: data.bedrooms.ru,
+                        bedrooms_en: data.bedrooms.en,
+                        bedrooms_uz: data.bedrooms.uz,
 
-                id: String(lastId + 1),
+                        bathrooms_ru: data.bathrooms.ru,
+                        bathrooms_en: data.bathrooms.en,
+                        bathrooms_uz: data.bathrooms.uz,
 
-                title: data.title,
-                description: data.description,
-                image: data.image,
+                        type_ru: data.type.ru,
+                        type_en: data.type.en,
+                        type_uz: data.type.uz,
 
-                bedrooms: data.bedrooms,
-                bathrooms: data.bathrooms,
+                        image: data.image,
 
-                type: data.type,
-                price: data.price,
+                        price: data.price,
 
-                link: data.link,
+                        link: `/${data.link}`,
+                    }
+                ]);
 
-                bedroomIcon: "/BACKGROUND_2.svg",
-                bathroomIcon: "/Icon.svg",
-                typeIcon: "/Icon (1).svg",
-            };
-
-            await axios.post(
-                urlServer,
-                newCard
-            );
+            if (error) {
+                console.log(error);
+                toast.error(error.message);
+                return;
+            }
 
             getCards();
 
-            console.log("SUCCESS");
+            toast.success("Карточка создана");
 
         } catch (error) {
 
             console.log(error);
+
+            toast.error("Ошибка создания");
         }
     };
-
     const changeCard = async (data, id) => {
 
         try {
 
-            await axios.put(
-                `${urlServer}/${id}`,
-                data
-            );
+            const { error } = await supabase
+                .from("cardss")
+                .update({
+
+                    title_ru: data.title.ru,
+                    title_en: data.title.en,
+                    title_uz: data.title.uz,
+
+                    description_ru: data.description.ru,
+                    description_en: data.description.en,
+                    description_uz: data.description.uz,
+
+                    bedrooms_ru: data.bedrooms.ru,
+                    bedrooms_en: data.bedrooms.en,
+                    bedrooms_uz: data.bedrooms.uz,
+
+                    bathrooms_ru: data.bathrooms.ru,
+                    bathrooms_en: data.bathrooms.en,
+                    bathrooms_uz: data.bathrooms.uz,
+
+                    type_ru: data.type.ru,
+                    type_en: data.type.en,
+                    type_uz: data.type.uz,
+
+                    image: data.image,
+
+                    price: data.price,
+
+                    link: data.link.startsWith("/")
+                        ? data.link
+                        : `/${data.link}`,
+                })
+                .eq("id", id);
+
+            if (error) throw error;
 
             getCards();
 
@@ -184,6 +313,31 @@ export const MyProvider = ({ children }) => {
             console.log(error);
 
             toast.error("Ошибка обновления");
+        }
+    };
+    const uploadImage = async (file) => {
+
+        try {
+
+            const fileName = `${Date.now()}-${file.name}`;
+
+            const { error } = await supabase.storage
+                .from("images")
+                .upload(fileName, file);
+
+            if (error) throw error;
+
+            const { data } = supabase.storage
+                .from("images")
+                .getPublicUrl(fileName);
+
+            return data.publicUrl;
+
+        } catch (error) {
+
+            console.log(error);
+
+            toast.error("Ошибка загрузки картинки");
         }
     };
 
@@ -208,6 +362,7 @@ export const MyProvider = ({ children }) => {
                 isDark,
                 handleDark,
                 isBurger, handleBurger,
+                uploadImage,
             }}
         >
 

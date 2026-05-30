@@ -1,363 +1,363 @@
-import { useForm } from "react-hook-form";
-import s from "./ChangeCard.module.css";
-import { useParams, Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { MyContext } from "../Context";
+  import { useForm } from "react-hook-form";
+  import s from "./ChangeCard.module.css";
+  import { useParams, Link } from "react-router-dom";
+  import { useContext, useEffect } from "react";
+  import { MyContext } from "../Context";
 
-const ChangeCard = () => {
+  const ChangeCard = () => {
 
-  const { id } = useParams();
+    const { id } = useParams();
 
-  const {
-    properties,
-    getCards,
-    cardId,
-    getCardId,
-    changeCard
-  } = useContext(MyContext);
+    const {
+      properties,
+      getCards,
+      cardId,
+      getCardId,
+      changeCard
+    } = useContext(MyContext);
 
-  const {
-    register,
-    handleSubmit,
-    setValue
-  } = useForm();
+    const {
+      register,
+      handleSubmit,
+      setValue
+    } = useForm();
 
-  useEffect(() => {
-    getCards();
-  }, []);
+    useEffect(() => {
+      getCards();
+    }, []);
 
-  useEffect(() => {
-    if (id) {
-      getCardId(id);
-    }
-  }, [id]);
+    useEffect(() => {
+      if (id) {
+        getCardId(id);
+      }
+    }, [id]);
 
-  useEffect(() => {
+    useEffect(() => {
 
-    if (cardId) {
+      if (cardId) {
 
-      setValue("titleRu", cardId.title?.ru || "");
-      setValue("titleEn", cardId.title?.en || "");
-      setValue("titleUz", cardId.title?.uz || "");
+        setValue("titleRu", cardId.title?.ru || "");
+        setValue("titleEn", cardId.title?.en || "");
+        setValue("titleUz", cardId.title?.uz || "");
 
-      setValue("descriptionRu", cardId.description?.ru || "");
-      setValue("descriptionEn", cardId.description?.en || "");
-      setValue("descriptionUz", cardId.description?.uz || "");
+        setValue("descriptionRu", cardId.description?.ru || "");
+        setValue("descriptionEn", cardId.description?.en || "");
+        setValue("descriptionUz", cardId.description?.uz || "");
 
-      setValue("image", cardId.image);
+        setValue("image", cardId.image);
 
-      setValue("bedroomsRu", cardId.bedrooms?.ru || "");
-      setValue("bedroomsEn", cardId.bedrooms?.en || "");
-      setValue("bedroomsUz", cardId.bedrooms?.uz || "");
+        setValue("bedroomsRu", cardId.bedrooms?.ru || "");
+        setValue("bedroomsEn", cardId.bedrooms?.en || "");
+        setValue("bedroomsUz", cardId.bedrooms?.uz || "");
 
-      setValue("bathroomsRu", cardId.bathrooms?.ru || "");
-      setValue("bathroomsEn", cardId.bathrooms?.en || "");
-      setValue("bathroomsUz", cardId.bathrooms?.uz || "");
+        setValue("bathroomsRu", cardId.bathrooms?.ru || "");
+        setValue("bathroomsEn", cardId.bathrooms?.en || "");
+        setValue("bathroomsUz", cardId.bathrooms?.uz || "");
 
-      setValue("typeRu", cardId.type?.ru || "");
-      setValue("typeEn", cardId.type?.en || "");
-      setValue("typeUz", cardId.type?.uz || "");
+        setValue("typeRu", cardId.type?.ru || "");
+        setValue("typeEn", cardId.type?.en || "");
+        setValue("typeUz", cardId.type?.uz || "");
 
-      setValue("price", cardId.price);
+        setValue("price", cardId.price);
 
-      setValue("link", cardId.link);
-    }
+        setValue("link", cardId.link);
+      }
 
-  }, [cardId]);
+    }, [cardId]);
 
-  const onSubmit = (data) => {
+    const onSubmit = (data) => {
 
-    const updatedCard = {
-      title: {
-        ru: data.titleRu,
-        en: data.titleEn,
-        uz: data.titleUz,
-      },
+      const updatedCard = {
+        title: {
+          ru: data.titleRu,
+          en: data.titleEn,
+          uz: data.titleUz,
+        },
 
-      description: {
-        ru: data.descriptionRu,
-        en: data.descriptionEn,
-        uz: data.descriptionUz,
-      },
+        description: {
+          ru: data.descriptionRu,
+          en: data.descriptionEn,
+          uz: data.descriptionUz,
+        },
 
-      image: data.image,
+        image: data.image,
 
-      bedroomIcon: "/BACKGROUND_2.svg",
-      bathroomIcon: "/Icon.svg",
-      typeIcon: "/Icon (1).svg",
+        bedroomIcon: "/BACKGROUND_2.svg",
+        bathroomIcon: "/Icon.svg",
+        typeIcon: "/Icon (1).svg",
 
-      bedrooms: {
-        ru: data.bedroomsRu,
-        en: data.bedroomsEn,
-        uz: data.bedroomsUz,
-      },
+        bedrooms: {
+          ru: data.bedroomsRu,
+          en: data.bedroomsEn,
+          uz: data.bedroomsUz,
+        },
 
-      bathrooms: {
-        ru: data.bathroomsRu,
-        en: data.bathroomsEn,
-        uz: data.bathroomsUz,
-      },
+        bathrooms: {
+          ru: data.bathroomsRu,
+          en: data.bathroomsEn,
+          uz: data.bathroomsUz,
+        },
 
-      type: {
-        ru: data.typeRu,
-        en: data.typeEn,
-        uz: data.typeUz,
-      },
+        type: {
+          ru: data.typeRu,
+          en: data.typeEn,
+          uz: data.typeUz,
+        },
 
-      price: data.price,
-      link: data.link
+        price: data.price,
+        link: data.link
+      };
+
+      changeCard(updatedCard, id);
     };
 
-    changeCard(updatedCard, id);
-  };
+    if (!id) {
 
-  if (!id) {
+      return (
+
+        <section className={s.cards}>
+
+          <h1>
+            Choose Property
+          </h1>
+
+          {properties.map((item) => (
+
+            <div
+              key={item.id}
+              className={s.card}
+            >
+
+              <h2>
+                {item.title?.en}
+              </h2>
+
+              <Link
+                to={`/admin/changeCard/${item.id}`}
+              >
+                Edit
+              </Link>
+
+            </div>
+          ))}
+
+        </section>
+      );
+    }
 
     return (
 
-      <section className={s.cards}>
+      <section className={s.changeCard}>
 
-        <h1>
-          Choose Property
-        </h1>
+        <form
+          className={s.form}
+          onSubmit={handleSubmit(onSubmit)}
+        >
 
-        {properties.map((item) => (
+          <h1 className={s.mainTitle}>
+            Change Property
+          </h1>
 
-          <div
-            key={item.id}
-            className={s.card}
-          >
+          <div className={s.box}>
+            <h2 className={s.title}>Title RU</h2>
 
-            <h2>
-              {item.title?.en}
+            <input
+              className={s.inp}
+              type="text"
+              {...register("titleRu")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Title EN</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("titleEn")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Title UZ</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("titleUz")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Description RU</h2>
+
+            <textarea
+              className={s.textarea}
+              {...register("descriptionRu")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Description EN</h2>
+
+            <textarea
+              className={s.textarea}
+              {...register("descriptionEn")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Description UZ</h2>
+
+            <textarea
+              className={s.textarea}
+              {...register("descriptionUz")}
+            />
+          </div>
+
+          <div className={s.box}>
+
+            <h2 className={s.title}>
+              Image
             </h2>
 
-            <Link
-              to={`/admin/changeCard/${item.id}`}
-            >
-              Edit
-            </Link>
+            <input
+              className={s.inp}
+              type="text"
+              {...register("image")}
+            />
 
           </div>
-        ))}
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bedrooms RU</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bedroomsRu")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bedrooms EN</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bedroomsEn")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bedrooms UZ</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bedroomsUz")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bathrooms RU</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bathroomsRu")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bathrooms EN</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bathroomsEn")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Bathrooms UZ</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("bathroomsUz")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Type RU</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("typeRu")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Type EN</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("typeEn")}
+            />
+          </div>
+
+          <div className={s.box}>
+            <h2 className={s.title}>Type UZ</h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("typeUz")}
+            />
+          </div>
+
+          <div className={s.box}>
+
+            <h2 className={s.title}>
+              Price
+            </h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("price")}
+            />
+
+          </div>
+
+          <div className={s.box}>
+
+            <h2 className={s.title}>
+              Link
+            </h2>
+
+            <input
+              className={s.inp}
+              type="text"
+              {...register("link")}
+            />
+
+          </div>
+
+          <button
+            className={s.btn}
+            type="submit"
+          >
+            Save Changes
+          </button>
+
+        </form>
 
       </section>
     );
-  }
+  };
 
-  return (
-
-    <section className={s.changeCard}>
-
-      <form
-        className={s.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-
-        <h1 className={s.mainTitle}>
-          Change Property
-        </h1>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Title RU</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("titleRu")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Title EN</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("titleEn")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Title UZ</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("titleUz")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Description RU</h2>
-
-          <textarea
-            className={s.textarea}
-            {...register("descriptionRu")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Description EN</h2>
-
-          <textarea
-            className={s.textarea}
-            {...register("descriptionEn")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Description UZ</h2>
-
-          <textarea
-            className={s.textarea}
-            {...register("descriptionUz")}
-          />
-        </div>
-
-        <div className={s.box}>
-
-          <h2 className={s.title}>
-            Image
-          </h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("image")}
-          />
-
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bedrooms RU</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bedroomsRu")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bedrooms EN</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bedroomsEn")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bedrooms UZ</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bedroomsUz")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bathrooms RU</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bathroomsRu")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bathrooms EN</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bathroomsEn")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Bathrooms UZ</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("bathroomsUz")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Type RU</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("typeRu")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Type EN</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("typeEn")}
-          />
-        </div>
-
-        <div className={s.box}>
-          <h2 className={s.title}>Type UZ</h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("typeUz")}
-          />
-        </div>
-
-        <div className={s.box}>
-
-          <h2 className={s.title}>
-            Price
-          </h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("price")}
-          />
-
-        </div>
-
-        <div className={s.box}>
-
-          <h2 className={s.title}>
-            Link
-          </h2>
-
-          <input
-            className={s.inp}
-            type="text"
-            {...register("link")}
-          />
-
-        </div>
-
-        <button
-          className={s.btn}
-          type="submit"
-        >
-          Save Changes
-        </button>
-
-      </form>
-
-    </section>
-  );
-};
-
-export default ChangeCard;
+  export default ChangeCard;

@@ -1,19 +1,17 @@
-import s from './Discover.module.css'
+import { Link } from 'react-router-dom'
+import s from './Featured.module.css'
 import { motion } from "framer-motion"
-
+import { useTranslation } from 'react-i18next'
+import { useContext, useEffect } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay, Mousewheel } from 'swiper/modules'
+import { Navigation, Autoplay, Mousewheel } from 'swiper/modules'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 
-import { Link } from 'react-router-dom'
-import { useTranslation } from "react-i18next"
-import { useContext, useEffect } from 'react'
-import { MyContext } from '../Context'
+import { MyContext } from '../Context';
 
-const Discover = () => {
+const Feautured = () => {
 
     const {
         properties,
@@ -26,95 +24,94 @@ const Discover = () => {
         getCards();
     }, []);
 
-    const { t, i18n } = useTranslation()
+    const { t, i18n } = useTranslation();
 
     return (
         <section
-            className={s.discover}
-            id='discover'
+            className={s.feautured}
+            id='feautured'
         >
 
             <div className={s.text}>
 
-                <img
-                    src="/Abstract Design.svg"
-                    alt=""
-                    className={s.logo}
-                />
+                <div className={s.text}>
 
-                <h1>
-                    {t("discoverTitle")}
-                </h1>
+                    <img
+                        src="/Abstract Design.svg"
+                        alt=""
+                        className={s.logo}
+                    />
 
-                <div className={s.titles}>
+                    <h1>
+                        {t("discoverTitle")}
+                    </h1>
 
-                    <p>
-                        {t("discoverText")}
-                    </p>
+                    <div className={s.titles}>
+
+                        <p>
+                            {t("discoverText")}
+                        </p>
+
+                    </div>
 
                 </div>
 
             </div>
 
             <Swiper
-                modules={[Navigation, Pagination, Autoplay, Mousewheel]}
-
+                modules={[Navigation, Autoplay, Mousewheel]}
                 spaceBetween={30}
-
                 slidesPerView={3}
-
-                loop={true}
-
+                loop={properties.length > 3}
                 navigation={true}
 
                 mousewheel={{
-                    forceToAxis: true
+                    forceToAxis: true,
                 }}
 
                 autoplay={{
-                    delay: 7500,
-                    disableOnInteraction: false
+                    delay: 5500,
+                    disableOnInteraction: false,
                 }}
 
                 breakpoints={{
                     0: {
-                        slidesPerView: 1
+                        slidesPerView: 1,
                     },
 
                     768: {
-                        slidesPerView: 2
+                        slidesPerView: 2,
                     },
 
                     1200: {
-                        slidesPerView: 3
+                        slidesPerView: 3,
                     }
                 }}
 
-                className={s.swiper}
+                className={s.cards}
             >
 
                 {properties.map((item) => (
 
-                    <SwiperSlide key={item.id}>
+                    <SwiperSlide
+                        key={item.id}
+                    >
 
                         <motion.div
                             className={s.card}
 
                             initial={{
                                 opacity: 0,
-                                y: 120,
-                                filter: "blur(10px)"
+                                y: 80
                             }}
 
                             whileInView={{
                                 opacity: 1,
-                                y: 0,
-                                filter: "blur(0px)"
+                                y: 0
                             }}
 
                             transition={{
-                                duration: 0.9,
-                                ease: [0.22, 1, 0.36, 1]
+                                duration: 0.8
                             }}
 
                             viewport={{
@@ -145,7 +142,7 @@ const Discover = () => {
                                 <span>
 
                                     <img
-                                        src={item.bedroomIcon}
+                                        src="/BACKGROUND_2.svg"
                                         alt=""
                                     />
 
@@ -156,7 +153,7 @@ const Discover = () => {
                                 <span>
 
                                     <img
-                                        src={item.bathroomIcon}
+                                        src="/Icon.svg"
                                         alt=""
                                     />
 
@@ -167,7 +164,7 @@ const Discover = () => {
                                 <span>
 
                                     <img
-                                        src={item.typeIcon}
+                                        src="/Icon (1).svg"
                                         alt=""
                                     />
 
@@ -195,7 +192,7 @@ const Discover = () => {
                                     to={item.link}
                                     className={s.linkk}
                                 >
-                                    {t("viewDetails")}
+                                    {t("viewProperty")}
                                 </Link>
 
                             </div>
@@ -223,4 +220,4 @@ const Discover = () => {
     )
 }
 
-export default Discover
+export default Feautured    
