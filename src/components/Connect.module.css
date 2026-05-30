@@ -1,0 +1,240 @@
+.connect {
+    max-width: 1440px;
+    width: 100%;
+    margin: 120px auto;
+    padding: 0 20px;
+}
+
+.connect .text {
+    margin-bottom: 60px;
+}
+
+.connect .text h1 {
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 150%;
+    color: var(--white);
+    margin-top: 10px;
+    animation: title 1s cubic-bezier(.22, 1, .36, 1);
+}
+
+.connect .text p {
+    max-width: 1200px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 170%;
+    color: var(--gray);
+    margin-top: 14px;
+    animation: text 1.3s cubic-bezier(.22, 1, .36, 1);
+}
+
+.connect .requestForm {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 50px;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: form 1.2s cubic-bezier(.22, 1, .36, 1);
+    transition: .4s;
+}
+
+.connect .requestForm:hover {
+    box-shadow: 0 0 40px rgba(112, 59, 247, 0.08);
+}
+
+.connect .requestForm .block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.connect .requestForm h1 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    color: var(--white);
+    margin-bottom: 14px;
+}
+
+.connect .requestForm .select {
+    width: 100%;
+    background: var(--dark-gray);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    color: var(--white);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white'%3e%3cpath d='M5 7l5 5 5-5'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+}
+
+.connect .requestForm .select:hover {
+    border-color: var(--violet);
+}
+
+.connect .requestForm .select:focus {
+    border: 1px solid var(--violet);
+    box-shadow: 0 0 15px rgba(112, 59, 247, 0.3);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.connect .requestForm .select option {
+    background: var(--black);
+    color: var(--white);
+}
+
+.connect .requestForm .inp {
+    width: 100%;
+    background: var(--dark-gray);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    color: var(--white);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.connect .requestForm .inp:hover {
+    border-color: var(--violet);
+}
+
+.connect .requestForm .inp::placeholder {
+    color: var(--gray);
+}
+
+.connect .requestForm .inp:focus {
+    border: 1px solid var(--violet);
+    box-shadow: 0 0 15px rgba(112, 59, 247, 0.3);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.connect .requestForm textarea.inp {
+    resize: none;
+    min-height: 160px;
+}
+
+.connect .requestForm .btn {
+    width: 220px;
+    padding: 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--violet);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: .35s;
+}
+
+.connect .requestForm .btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(112, 59, 247, 0.4);
+}
+
+.connect .requestForm .btn:active {
+    transform: scale(.96);
+}
+
+.connect .requestForm .error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 8px;
+    animation: shake .4s ease;
+}
+
+
+
+
+
+
+@media (max-width: 992px) {
+    .connect .requestForm {
+        padding: 35px;
+    }
+
+    .connect .requestForm .block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .connect .text h1 {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .connect .requestForm {
+        padding: 25px;
+    }
+
+    .connect .requestForm .block {
+        grid-template-columns: 1fr;
+    }
+
+    .connect .requestForm .btn {
+        width: 100%;
+    }
+
+    .connect .text h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 500px) {
+    .connect {
+        margin: 80px auto;
+        padding: 0 14px;
+    }
+
+    .connect .text {
+        margin-bottom: 35px;
+    }
+
+    .connect .text h1 {
+        font-size: 26px;
+    }
+
+    .connect .text p {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .connect .requestForm {
+        padding: 18px;
+        gap: 18px;
+    }
+
+    .connect .requestForm h1 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .connect .requestForm .inp,
+    .connect .requestForm .select {
+        padding: 15px 16px;
+        font-size: 14px;
+    }
+
+    .connect .requestForm textarea.inp {
+        min-height: 130px;
+    }
+
+    .connect .requestForm .btn {
+        width: 100%;
+        padding: 16px;
+        font-size: 14px;
+    }
+
+    .connect .requestForm .error {
+        font-size: 13px;
+    }
+}
+

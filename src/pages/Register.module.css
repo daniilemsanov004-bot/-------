@@ -1,0 +1,337 @@
+.register {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at top left, #703bf733, transparent 30%),
+        radial-gradient(circle at bottom right, #703bf722, transparent 30%),
+        var(--black);
+}
+
+.blur1,
+.blur2 {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(120px);
+
+    z-index: 1;
+}
+
+.blur1 {
+    width: 300px;
+    height: 300px;
+
+    background: #703bf7;
+
+    top: -100px;
+    left: -100px;
+}
+
+.blur2 {
+    width: 250px;
+    height: 250px;
+
+    background: #a855f7;
+
+    bottom: -100px;
+    right: -100px;
+}
+
+.bottom {
+    color: var(--white);
+
+    display: flex;
+    gap: 8px;
+
+    justify-content: center;
+}
+
+.bottom a {
+    color: var(--violet);
+
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.bottom a:hover {
+    opacity: 0.8;
+}
+
+.form {
+    position: relative;
+
+    z-index: 5;
+
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 40px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 0 40px rgba(112, 59, 247, 0.15);
+}
+
+.form h2 {
+    font-size: 34px;
+
+    color: var(--white);
+
+    text-align: center;
+}
+
+.form input {
+    height: 58px;
+
+    padding: 0 20px;
+
+    border-radius: 12px;
+    border: 1px solid var(--border);
+
+    background: transparent;
+
+    color: var(--white);
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.form input:focus {
+    border-color: var(--violet);
+
+    box-shadow:
+        0 0 15px rgba(112, 59, 247, 0.3);
+}
+
+.form input::placeholder {
+    color: gray;
+}
+
+.form>button {
+    height: 58px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--violet);
+
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 10px 30px rgba(112, 59, 247, 0.4);
+}
+
+.form>button:hover {
+    opacity: 0.8;
+
+    transform: translateY(-2px);
+}
+
+.passwordBox {
+    position: relative;
+
+    width: 100%;
+}
+
+.passwordBox input {
+    width: 100%;
+
+    padding-right: 55px;
+}
+
+.eye {
+    position: absolute;
+
+    top: 50%;
+    right: 18px;
+
+    transform: translateY(-50%);
+
+    width: auto !important;
+    height: auto;
+
+    padding: 0;
+    margin: 0;
+
+    background: transparent !important;
+
+    border: none;
+    outline: none;
+
+    box-shadow: none;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    color: var(--white);
+
+    opacity: 0.7;
+
+    transition: 0.3s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eye:hover {
+    opacity: 1;
+}
+
+.required {
+    margin-top: -12px;
+
+    color: #ff6b6b;
+
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+
+    .register {
+        padding: 16px;
+    }
+
+    .form {
+        padding: 30px 20px;
+
+        border-radius: 20px;
+    }
+
+    .form h2 {
+        font-size: 28px;
+    }
+
+    .form input {
+        height: 54px;
+
+        font-size: 15px;
+    }
+
+    .form>button {
+        height: 54px;
+
+        font-size: 15px;
+    }
+
+    .bottom {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 4px;
+
+        text-align: center;
+    }
+
+    .blur1 {
+        width: 220px;
+        height: 220px;
+
+        filter: blur(90px);
+    }
+
+    .blur2 {
+        width: 180px;
+        height: 180px;
+
+        filter: blur(90px);
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .register {
+        padding: 12px;
+    }
+
+    .form {
+        padding: 24px 16px;
+
+        gap: 16px;
+
+        border-radius: 18px;
+    }
+
+    .form h2 {
+        font-size: 24px;
+    }
+
+    .form input {
+        height: 50px;
+
+        font-size: 14px;
+
+        padding: 0 16px;
+    }
+
+    .passwordBox input {
+        padding-right: 50px;
+    }
+
+    .form>button {
+        height: 50px;
+
+        font-size: 14px;
+    }
+
+    .eye {
+        right: 15px;
+
+        font-size: 16px;
+    }
+
+    .required {
+        font-size: 12px;
+
+        margin-top: -10px;
+    }
+
+    .bottom {
+        font-size: 14px;
+    }
+
+    .blur1 {
+        width: 180px;
+        height: 180px;
+    }
+
+    .blur2 {
+        width: 150px;
+        height: 150px;
+    }
+
+}

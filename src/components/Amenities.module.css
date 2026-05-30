@@ -1,0 +1,125 @@
+.amenities {
+    max-width: 1440px;
+    width: 100%;
+
+    margin: 120px auto;
+    padding: 0 20px;
+
+    position: relative;
+}
+
+.amenities h1 {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--white);
+
+    margin-bottom: 40px;
+}
+
+.amenities .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.amenities .features .feature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 26px;
+
+    border-radius: 18px;
+
+    background: var(--black);
+
+    border: 1px solid var(--border);
+
+    transition: 0.45s ease;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.amenities .features .feature::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(135deg,
+            rgba(112, 59, 247, 0.12),
+            transparent 40%);
+
+    opacity: 0;
+
+    transition: 0.5s ease;
+}
+
+.amenities .features .feature:hover {
+    transform: translateY(-8px);
+
+    border-color: var(--violet);
+
+    box-shadow:
+        0 0 30px rgba(112, 59, 247, 0.18);
+}
+
+.amenities .features .feature:hover::before {
+    opacity: 1;
+}
+
+.amenities .features .feature span {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: var(--violet);
+
+    box-shadow:
+        0 0 15px rgba(112, 59, 247, 0.8);
+
+    position: relative;
+    z-index: 2;
+}
+
+.amenities .features .feature h3 {
+    font-size: 18px;
+    font-weight: 500;
+
+    color: var(--white);
+
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 992px) {
+
+    .amenities .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .amenities {
+        margin: 80px auto;
+    }
+
+    .amenities h1 {
+        font-size: 34px;
+    }
+
+    .amenities .features {
+        grid-template-columns: 1fr;
+    }
+
+    .amenities .features .feature {
+        padding: 22px;
+    }
+
+    .amenities .features .feature h3 {
+        font-size: 16px;
+    }
+}

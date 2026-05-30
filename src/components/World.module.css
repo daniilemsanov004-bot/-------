@@ -1,0 +1,201 @@
+.world {
+    max-width: 1440px;
+    width: 100%;
+    margin: 120px auto;
+
+    padding: 0 20px;
+
+    animation: section 1s ease;
+
+
+
+    .images {
+        max-width: 1300px;
+        width: 100%;
+
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        padding: 60px;
+
+        border: 1px solid rgba(128, 128, 128, 0.233);
+        border-radius: 20px;
+
+        background-image: url("/Abstract Design (1).png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        background-color: #141414;
+
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            background: #703bf7;
+
+            filter: blur(160px);
+
+            opacity: 0.12;
+
+            top: -150px;
+            right: -120px;
+
+            z-index: 0;
+        }
+
+        .img {
+            max-width: clamp(9.313rem, 1.813rem + 37.5vw, 35.563rem);
+            width: 100%;
+
+            border-radius: 16px;
+
+            transition: 0.4s;
+
+            position: relative;
+            z-index: 2;
+
+            &:hover {
+                transform: translateY(-10px) scale(1.03) rotate(1deg);
+
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.45),
+                    0 0 25px rgba(112, 59, 247, 0.25);
+
+                filter: brightness(1.08);
+            }
+        }
+
+        .imgg {
+            max-width: clamp(4.375rem, 0.732rem + 18.21vw, 17.125rem);
+            width: 100%;
+
+            border-radius: 16px;
+
+            transition: 0.4s;
+
+            position: relative;
+            z-index: 2;
+
+            &:hover {
+                transform: translateY(-10px) scale(1.04);
+
+                box-shadow:
+                    0 20px 40px rgba(0, 0, 0, 0.45),
+                    0 0 25px rgba(112, 59, 247, 0.25);
+
+                filter: brightness(1.08);
+            }
+        }
+
+        .card {
+            max-width: 570px;
+            width: 100%;
+
+            position: relative;
+            z-index: 2;
+
+            animation: cardd 1s ease;
+
+
+
+            h1 {
+                font-weight: 600;
+                font-size: 38px;
+                line-height: 150%;
+                color: white;
+
+                margin-top: 6px;
+                margin-bottom: 16px;
+
+                animation: title 1s ease;
+            }
+
+            p {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 180%;
+                color: gray;
+
+                max-width: 550px;
+
+                animation: text 1.2s ease;
+            }
+
+
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+
+    .world {
+
+        .images {
+            justify-content: center;
+            padding: 40px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    .world {
+
+        .images {
+            padding: 24px;
+            gap: 14px;
+
+            .card {
+
+                h1 {
+                    font-size: 28px;
+                }
+
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .img,
+            .imgg {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+
+    .world {
+        margin: 80px auto;
+
+        .images {
+            padding: 16px;
+
+            border-radius: 16px;
+
+            .card {
+
+                h1 {
+                    font-size: 24px;
+                    line-height: 140%;
+                }
+
+                p {
+                    font-size: 13px;
+                    line-height: 170%;
+                }
+            }
+        }
+    }
+}
+

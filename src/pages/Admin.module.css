@@ -1,0 +1,42 @@
+.admin {
+  min-height: 70vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  padding: 120px 20px;
+
+  background: var(--dark-gray);
+}
+
+.link {
+  padding: 18px 34px;
+
+  border: 1px solid #703bf7;
+  border-radius: 14px;
+
+  background: #1a1a1a;
+
+  font-weight: 600;
+  font-size: 18px;
+
+  color: white;
+
+  text-decoration: none;
+
+  transition: 0.4s;
+
+  box-shadow: 0 0 0 transparent;
+}
+
+.link:hover {
+  transform: translateY(-6px);
+
+  background: #703bf7;
+
+  box-shadow: 0 10px 30px rgba(112, 59, 247, 0.4);
+}

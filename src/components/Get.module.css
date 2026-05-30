@@ -1,0 +1,68 @@
+.get {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0;
+
+    .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        position: relative;
+        padding: 10px;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+
+        width: 1200px;
+        height: 600px;
+
+        background: radial-gradient(circle at top left,
+                rgba(112, 59, 247, 0.18),
+                transparent 60%);
+
+        top: -250px;
+        left: -350px;
+
+        filter: blur(120px);
+
+        z-index: 0;
+    }
+
+    h1,
+    p {
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-weight: 600;
+        font-size: 48px;
+        line-height: 150%;
+
+        color: var(--white);
+
+        margin-bottom: 16px;
+
+        @media (max-width:576px) {
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 150%;
+
+            color: var(--white);
+        }
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 170%;
+
+        color: var(--gray);
+
+        max-width: 1160px;
+        width: 100%;
+    }
+}
