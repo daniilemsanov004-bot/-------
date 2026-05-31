@@ -2,31 +2,44 @@ import axios from 'axios';
 import s from './Footer.module.css';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Gray from './Gray';
 import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
 
-    const { t } = useTranslation()
+    const { t } = useTranslation();
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const scrollTo = (path, id) => {
-        navigate(path)
+
+        navigate(path);
 
         setTimeout(() => {
-            const element = document.getElementById(id)
+
+            const element = document.getElementById(id);
 
             if (element) {
-                element.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                })
+
+                const isMobile = window.innerWidth <= 768;
+
+                const yOffset = isMobile ? -90 : -120;
+
+                const y =
+                    element.getBoundingClientRect().top +
+                    window.pageYOffset +
+                    yOffset;
+
+                window.scrollTo({
+                    top: y,
+                    behavior: "smooth"
+                });
             }
-        }, 200)
-    }
+
+        }, 300);
+    };
 
     const {
         register,
@@ -172,7 +185,11 @@ Email: ${data.email}
                 </motion.div>
 
                 <motion.div className={s.home}>
-                    <button onClick={() => scrollTo("/", "HeroSection")} className={s.imp}>
+
+                    <button
+                        onClick={() => scrollTo("/", "HeroSection")}
+                        className={s.imp}
+                    >
                         {t("home")}
                     </button>
 
@@ -191,11 +208,15 @@ Email: ${data.email}
                     <button onClick={() => scrollTo("/", "questions")}>
                         {t("faq")}
                     </button>
+
                 </motion.div>
 
                 <motion.div className={s.aboutUs}>
 
-                    <button onClick={() => scrollTo("/AboutUs", "journey")} className={s.imp}>
+                    <button
+                        onClick={() => scrollTo("/AboutUs", "journey")}
+                        className={s.imp}
+                    >
                         {t("aboutUs")}
                     </button>
 
@@ -223,7 +244,10 @@ Email: ${data.email}
 
                 <motion.div className={s.properties}>
 
-                    <button onClick={() => scrollTo("/Properties", "find")} className={s.imp}>
+                    <button
+                        onClick={() => scrollTo("/Properties", "find")}
+                        className={s.imp}
+                    >
                         {t("properties")}
                     </button>
 
@@ -239,7 +263,10 @@ Email: ${data.email}
 
                 <motion.div className={s.services}>
 
-                    <button onClick={() => scrollTo("/Services", "elevate")} className={s.imp}>
+                    <button
+                        onClick={() => scrollTo("/Services", "elevate")}
+                        className={s.imp}
+                    >
                         {t("services")}
                     </button>
 
@@ -267,7 +294,10 @@ Email: ${data.email}
 
                 <motion.div className={s.contactUs}>
 
-                    <button onClick={() => scrollTo("/ContactUs", "get")} className={s.imp}>
+                    <button
+                        onClick={() => scrollTo("/ContactUs", "get")}
+                        className={s.imp}
+                    >
                         {t("contactUs")}
                     </button>
 
@@ -286,7 +316,7 @@ Email: ${data.email}
             <Gray />
 
         </footer>
-    )
-}
+    );
+};
 
 export default Footer;
