@@ -458,3 +458,18 @@
         left: 120%;
     }
 }
+:global(.swiper-slide) {
+    opacity: 1 !important;
+}
+
+:global(.swiper-slide-active) {
+    opacity: 1 !important;
+}
+
+:global(.swiper-slide-next) {
+    opacity: 1 !important;
+}
+
+:global(.swiper-slide-prev) {
+    opacity: 1 !important;
+}
