@@ -19,7 +19,15 @@ const GalleryModal = ({
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+
         setMounted(true);
+
+        document.body.style.overflow = "hidden";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+
     }, []);
 
     if (!mounted) return null;
