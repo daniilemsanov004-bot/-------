@@ -19,7 +19,7 @@ const Hero = () => {
                 playsInline
                 preload="metadata"
             >
-                <source src="/public/compressed_realestate_video_fast.mp4" type="video/mp4" />
+                <source src="/compressed_realestate_video_fast.mp4" type="video/mp4" />
             </video>
 
 
