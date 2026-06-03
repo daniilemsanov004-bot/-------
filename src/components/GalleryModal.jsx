@@ -1,8 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
+import { createPortal } from "react-dom";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
 import s from "./GalleryModal.module.css";
 
 const GalleryModal = ({
@@ -11,37 +14,55 @@ const GalleryModal = ({
     onClose
 }) => {
 
-    return (
-        <div className={s.modal}>
+    return createPortal(
 
-            <button
-                className={s.close}
-                onClick={onClose}
-            >
-                ✕
-            </button>
+        <div
+            className={s.overlay}
+            onClick={onClose}
+        >
 
-            <Swiper
-                modules={[Navigation, Pagination]}
-                navigation
-                pagination={{ clickable: true }}
-                initialSlide={activeIndex}
-                className={s.swiper}
-                loop={true}
-                speed={800}
+            <div
+                className={s.content}
+                onClick={(e) => e.stopPropagation()}
             >
 
-                {images.map((img, index) => (
+                <button
+                    className={s.close}
+                    onClick={onClose}
+                >
+                    ✕
+                </button>
 
-                    <SwiperSlide key={index}>
-                        <img src={img} alt="" />
-                    </SwiperSlide>
+                <Swiper
+                    modules={[Navigation, Pagination]}
+                    navigation={true}
+                    pagination={{ clickable: true }}
+                    initialSlide={activeIndex}
+                    className={s.swiper}
+                    loop={true}
+                    speed={800}
+                >
 
-                ))}
+                    {images.map((img, index) => (
 
-            </Swiper>
+                        <SwiperSlide key={index}>
 
-        </div>
+                            <img
+                                src={img}
+                                alt=""
+                            />
+
+                        </SwiperSlide>
+
+                    ))}
+
+                </Swiper>
+
+            </div>
+
+        </div>,
+
+        document.body
     )
 }
 
