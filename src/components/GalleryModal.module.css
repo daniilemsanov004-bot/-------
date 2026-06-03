@@ -1,6 +1,14 @@
-.modal {
+.overlay {
     position: fixed;
+
     inset: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    backdrop-filter: blur(18px);
 
     z-index: 9999;
 
@@ -8,83 +16,55 @@
     align-items: center;
     justify-content: center;
 
-    overflow: hidden;
-
-    background: rgba(0, 0, 0, 0.92);
-
-    animation: fade 0.35s ease;
+    padding: 20px;
 }
 
-@keyframes fade {
-
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-
-}
-
-.content {
+.modal {
     width: 100%;
-    height: 100%;
+    max-width: 1400px;
 
     position: relative;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 10;
 }
 
 .swiper {
     width: 100%;
-    height: 100%;
+    height: 85vh;
+
+    border-radius: 28px;
+
+    overflow: hidden;
 }
 
-:global(.swiper-wrapper) {
+.slide {
     width: 100%;
     height: 100%;
 }
 
-:global(.swiper-slide) {
+.slide img {
     width: 100%;
     height: 100%;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    object-fit: cover;
 
-:global(.swiper-slide img) {
-    width: 90%;
-    height: 90%;
-
-    object-fit: contain;
-
-    border-radius: 24px;
-
-    box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.7);
+    border-radius: 28px;
 }
 
 .close {
     position: absolute;
 
-    top: 20px;
-    right: 20px;
+    top: -60px;
+    right: 0;
 
-    width: 56px;
-    height: 56px;
-
-    border: none;
+    width: 50px;
+    height: 50px;
 
     border-radius: 50%;
 
-    background: rgba(255, 255, 255, 0.1);
+    border: none;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(10px);
 
     color: white;
 
@@ -92,85 +72,68 @@
 
     cursor: pointer;
 
-    z-index: 100;
+    z-index: 20;
 
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .close:hover {
-    transform: scale(1.08);
+    transform: rotate(90deg) scale(1.08);
 
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 :global(.swiper-button-next),
 :global(.swiper-button-prev) {
-    width: 54px !important;
-    height: 54px !important;
-
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.1);
-
-    transition: 0.3s ease;
-}
-
-:global(.swiper-button-next:hover),
-:global(.swiper-button-prev:hover) {
-    transform: scale(1.08);
-
-    background: rgba(255, 255, 255, 0.18);
-}
-
-:global(.swiper-button-next::after),
-:global(.swiper-button-prev::after) {
-    font-size: 18px !important;
-
     color: white;
 }
 
 :global(.swiper-pagination-bullet) {
-    background: rgba(255, 255, 255, 0.45) !important;
-
-    opacity: 1;
+    background: white;
 }
 
-:global(.swiper-pagination-bullet-active) {
-    background: var(--violet) !important;
+@media (max-width: 768px) {
 
-    width: 26px;
+    .overlay {
+        padding: 12px;
+    }
 
-    border-radius: 20px;
-}
+    .swiper {
+        height: 65vh;
 
-@media (max-width: 700px) {
+        border-radius: 22px;
+    }
 
-    :global(.swiper-slide img) {
-        width: 100%;
-        height: 100%;
+    .slide img {
+        border-radius: 22px;
 
-        border-radius: 0;
+        object-fit: cover;
     }
 
     .close {
-        top: 12px;
-        right: 12px;
+        top: -50px;
 
-        width: 44px;
-        height: 44px;
+        width: 42px;
+        height: 42px;
 
-        font-size: 18px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .swiper {
+        height: 55vh;
+    }
+
+    .slide img {
+        object-fit: contain;
+
+        background: black;
     }
 
     :global(.swiper-button-next),
     :global(.swiper-button-prev) {
-        width: 42px !important;
-        height: 42px !important;
+        transform: scale(0.7);
     }
-
-    :global(.swiper-button-next::after),
-    :global(.swiper-button-prev::after) {
-        font-size: 14px !important;
-    }
-
 }

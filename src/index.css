@@ -51,9 +51,3 @@ svg {
 body {
   background: var(--black);
 }
-
-html,
-body,
-#root {
-  min-height: 100%;
-}
