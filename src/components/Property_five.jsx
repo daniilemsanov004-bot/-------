@@ -6,11 +6,23 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
+import { useState } from "react";
+import GalleryModal from "./GalleryModal";
 
 const Property = () => {
 
     const { t } = useTranslation();
+
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+
+    const images = [
+        "/495c8c25-fc6c-43c7-9096-aa7ff174a0b7.png",
+        "/YPohWtlamxLknR_UYB6juVVhT6XRWvKwKSC5nzEnL-rHeqJGD175Fp9ujPlkkVnpWySf6kdJEUI2anHWpB_ei0LFh6vk710Av2ndpmtamQyGys2mtyBZppNYtmnDwNWQFEfSh0RjKlBlV3RjS-thRcEx8zNQ5iIobsb1E6QyYRHvLJFKrL-pXO3vCLYp0Xgm.jpg",
+        "/4UV44NVzBwvNCTFIOjCVPMsB8WgbgXEHstNlGspPIxycBKSrTQLiftc14qIjSagOKATCuQvcdFA1khvn9OifTvQI_MMAgEvPSo8uaQIo9SGtbH2GyHQlJp8J8VKYs77Cym3B6__bvlS7ehqOGP_fk3uHtN6H6_3BMmcsLssrkyT3qhVDyMSmq7xJruul3HbJ.jpg",
+        "/efoQHcM27OvNX0NQWPWGq2i3BxVpoE2hn47eD6JHXi9Ag0PywSTPtvzrDbSOlgbqhhB6d9UdJNbdnaqzeBFIWi964bkUoEa3XeW_H3CCxI6hY12cei_Ur6YYPkmEK1uF3fsePWl-zc5w-1pzP983dQdaHq8XcDMgGTgEUwuU7MPwXer9V2wVoXwDf_sytvEL.jpg",
+        "/jRLvWS4tJUcC2Q3Y3MAU3si0qBXIxFUbUInQD71rB9tXujY8BCET4ZCQNoZnqTUPbAFtnBsrm6yDnZpqJzDlVFYHfJSx8HuqSlqfedtkC0_dtJNGXukRcDYNTW6gWYWDtq7X01ShJzVAvsH8XP8M0mACGPmskg-X0gohnwdb8uZdNi6xd33rGoOl3ZC5kL6z.jpg",
+    ];
 
     const cardAnim = (delay) => ({
         initial: { opacity: 0, y: 60 },
@@ -22,15 +34,9 @@ const Property = () => {
 
     return (
         <section className={s.property}>
+
             <div className={s.all}>
 
-                <motion.img
-                    alt=""
-                    initial={{ opacity: 0, x: -100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ amount: 0.2 }}
-                />
                 <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
                     navigation={true}
@@ -39,7 +45,6 @@ const Property = () => {
                     spaceBetween={20}
                     className={s.mySwiper}
                     loop={true}
-
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
@@ -48,36 +53,56 @@ const Property = () => {
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/495c8c25-fc6c-43c7-9096-aa7ff174a0b7.png"
+                            src={images[0]}
                             alt=""
+                            onClick={() => {
+                                setIndex(0)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/YPohWtlamxLknR_UYB6juVVhT6XRWvKwKSC5nzEnL-rHeqJGD175Fp9ujPlkkVnpWySf6kdJEUI2anHWpB_ei0LFh6vk710Av2ndpmtamQyGys2mtyBZppNYtmnDwNWQFEfSh0RjKlBlV3RjS-thRcEx8zNQ5iIobsb1E6QyYRHvLJFKrL-pXO3vCLYp0Xgm.jpg"
+                            src={images[1]}
                             alt=""
+                            onClick={() => {
+                                setIndex(1)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/4UV44NVzBwvNCTFIOjCVPMsB8WgbgXEHstNlGspPIxycBKSrTQLiftc14qIjSagOKATCuQvcdFA1khvn9OifTvQI_MMAgEvPSo8uaQIo9SGtbH2GyHQlJp8J8VKYs77Cym3B6__bvlS7ehqOGP_fk3uHtN6H6_3BMmcsLssrkyT3qhVDyMSmq7xJruul3HbJ.jpg"
+                            src={images[2]}
                             alt=""
+                            onClick={() => {
+                                setIndex(2)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/efoQHcM27OvNX0NQWPWGq2i3BxVpoE2hn47eD6JHXi9Ag0PywSTPtvzrDbSOlgbqhhB6d9UdJNbdnaqzeBFIWi964bkUoEa3XeW_H3CCxI6hY12cei_Ur6YYPkmEK1uF3fsePWl-zc5w-1pzP983dQdaHq8XcDMgGTgEUwuU7MPwXer9V2wVoXwDf_sytvEL.jpg"
+                            src={images[3]}
                             alt=""
+                            onClick={() => {
+                                setIndex(3)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/jRLvWS4tJUcC2Q3Y3MAU3si0qBXIxFUbUInQD71rB9tXujY8BCET4ZCQNoZnqTUPbAFtnBsrm6yDnZpqJzDlVFYHfJSx8HuqSlqfedtkC0_dtJNGXukRcDYNTW6gWYWDtq7X01ShJzVAvsH8XP8M0mACGPmskg-X0gohnwdb8uZdNi6xd33rGoOl3ZC5kL6z.jpg"
+                            src={images[4]}
                             alt=""
+                            onClick={() => {
+                                setIndex(4)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
@@ -91,7 +116,9 @@ const Property = () => {
                     viewport={{ amount: 0.2 }}
                 >
 
-                    <motion.h1>{t("property.featuresTitle")}</motion.h1>
+                    <motion.h1>
+                        {t("property.featuresTitle")}
+                    </motion.h1>
 
                     <div className={s.rooms}>
 
@@ -143,6 +170,7 @@ const Property = () => {
                             </motion.div>
 
                         </div>
+
                     </div>
                 </motion.div>
             </div>
@@ -157,6 +185,14 @@ const Property = () => {
                 <h1>{t("property.aboutTitle")}</h1>
                 <p>{t("property.aboutText")}</p>
             </motion.div>
+
+            {open && (
+                <GalleryModal
+                    images={images}
+                    activeIndex={index}
+                    onClose={() => setOpen(false)}
+                />
+            )}
 
         </section>
     )

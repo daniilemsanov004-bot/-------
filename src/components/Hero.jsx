@@ -10,6 +10,22 @@ const Hero = () => {
     return (
         <section className={s.hero} id='HeroSection'>
 
+
+            <video
+                className={s.bgVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+            >
+                <source src="/public/14437388_3840_2160_30fps (1).mp4" type="video/mp4" />
+            </video>
+
+
+            <div className={s.overlay}></div>
+
+
             <motion.div
                 className={s.text}
                 initial={{ opacity: 0, x: -80 }}
@@ -111,7 +127,6 @@ const Hero = () => {
                 </div>
 
             </motion.div>
-
             <motion.img
                 src="/Container (1).png"
                 alt=""

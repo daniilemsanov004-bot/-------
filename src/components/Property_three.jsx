@@ -6,12 +6,27 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useState } from "react";
+import GalleryModal from "./GalleryModal";
+
 const Property = () => {
 
     const { t } = useTranslation();
 
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+
+    const images = [
+        "/1f373383-03f8-4cdc-a40b-6b1d74266e1d.png",
+        "/FGx36uT1H7tIp4JSXq8bBWbiUef0M6blD6phnSC9LkYmJEMmXH0ZctKd2lN_-1vbCS4n9U45bam-EOfTwHnqk-h6KRt7LAhAb4EAj03fHuPDS24OQ68vLHuZuQo4YbY3UfOGqKPFIM8itCswHlDc9CnnBPc8rFsj7aO4C5xpb4W7l__oSPOF2IXn65fe3voa.jpg",
+        "/aQi4kZ7VeWsLZITkpt2jffPyUaPxdbFbN5xTzesd0PF7EO8qe2BNxgH82jAC0C0s_OO065_1MNusC4Fv3jnd7ZDJ6hpy_F9DLvR58c-P71FgM4e8lYhoTz3CSs9_KSR5PPTv2G4LL46_n2jvOsIsj28TH58EeXnSe_SME_ex4lNE0MTeLMkCyimHbOXbRPum.jpg",
+        "/5F49a4UT9tZs34X088DV908xvotkCnzAFQRfmxdz9wjl_2yffY-2DJK6jIo5cJrNUSF_qPIkRxej-goWpjlX7SHLH-UYTy2TjX9ZBybvj72Po1nqyLMaMZKL033Fscg8tif9JOtZKtfDuWEVsnTSx-qzS0xl-ybUuPlPm4IAMkxncpQVgLvASC0L6TqSwbmh.jpg",
+        "/AVdtbOrhAYo5Lg2g8lVs3DGBBvtdv4F22a-mpaH7QrTolqg2Y1AAvNuU9wMhjp70sKJmYxLhxiGv4ut1ssTMvsFcd-Q0BdwWDYoCSnrV38oYO--bDhNC08X27UgXsbkTRreO-vKLOtJCCwCbEzQqvZqY4u7EZxydSixPPJWlRmTZIfxTqTrTJt-RXOMtgVOk.jpg",
+    ];
+
     return (
         <section className={s.property}>
+
             <div className={s.all}>
 
                 <Swiper
@@ -22,7 +37,6 @@ const Property = () => {
                     spaceBetween={20}
                     className={s.mySwiper}
                     loop={true}
-
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
@@ -31,41 +45,60 @@ const Property = () => {
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/1f373383-03f8-4cdc-a40b-6b1d74266e1d.png"
+                            src={images[0]}
                             alt=""
+                            onClick={() => {
+                                setIndex(0)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/FGx36uT1H7tIp4JSXq8bBWbiUef0M6blD6phnSC9LkYmJEMmXH0ZctKd2lN_-1vbCS4n9U45bam-EOfTwHnqk-h6KRt7LAhAb4EAj03fHuPDS24OQ68vLHuZuQo4YbY3UfOGqKPFIM8itCswHlDc9CnnBPc8rFsj7aO4C5xpb4W7l__oSPOF2IXn65fe3voa.jpg"
+                            src={images[1]}
                             alt=""
+                            onClick={() => {
+                                setIndex(1)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/aQi4kZ7VeWsLZITkpt2jffPyUaPxdbFbN5xTzesd0PF7EO8qe2BNxgH82jAC0C0s_OO065_1MNusC4Fv3jnd7ZDJ6hpy_F9DLvR58c-P71FgM4e8lYhoTz3CSs9_KSR5PPTv2G4LL46_n2jvOsIsj28TH58EeXnSe_SME_ex4lNE0MTeLMkCyimHbOXbRPum.jpg"
+                            src={images[2]}
                             alt=""
+                            onClick={() => {
+                                setIndex(2)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/5F49a4UT9tZs34X088DV908xvotkCnzAFQRfmxdz9wjl_2yffY-2DJK6jIo5cJrNUSF_qPIkRxej-goWpjlX7SHLH-UYTy2TjX9ZBybvj72Po1nqyLMaMZKL033Fscg8tif9JOtZKtfDuWEVsnTSx-qzS0xl-ybUuPlPm4IAMkxncpQVgLvASC0L6TqSwbmh.jpg"
+                            src={images[3]}
                             alt=""
+                            onClick={() => {
+                                setIndex(3)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                     <SwiperSlide className={s.slide}>
                         <img
-                            src="/AVdtbOrhAYo5Lg2g8lVs3DGBBvtdv4F22a-mpaH7QrTolqg2Y1AAvNuU9wMhjp70sKJmYxLhxiGv4ut1ssTMvsFcd-Q0BdwWDYoCSnrV38oYO--bDhNC08X27UgXsbkTRreO-vKLOtJCCwCbEzQqvZqY4u7EZxydSixPPJWlRmTZIfxTqTrTJt-RXOMtgVOk.jpg"
+                            src={images[4]}
                             alt=""
+                            onClick={() => {
+                                setIndex(4)
+                                setOpen(true)
+                            }}
                         />
                     </SwiperSlide>
 
                 </Swiper>
-
 
                 <motion.div
                     className={s.texts}
@@ -134,7 +167,9 @@ const Property = () => {
                             </motion.div>
 
                         </div>
+
                     </div>
+
                 </motion.div>
 
             </div>
@@ -149,6 +184,14 @@ const Property = () => {
                 <h1>{t("property6.aboutTitle")}</h1>
                 <p>{t("property6.aboutText")}</p>
             </motion.div>
+
+            {open && (
+                <GalleryModal
+                    images={images}
+                    activeIndex={index}
+                    onClose={() => setOpen(false)}
+                />
+            )}
 
         </section>
     )

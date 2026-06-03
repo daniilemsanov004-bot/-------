@@ -6,13 +6,27 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useState } from "react";
+import GalleryModal from "./GalleryModal";
 
 const Property = () => {
 
     const { t } = useTranslation();
 
+    const [open, setOpen] = useState(false);
+    const [index, setIndex] = useState(0);
+
+    const images = [
+        "/aaab60f0-97d6-46aa-97fa-807504b62433.png",
+        "/wAIKhOn7sDTvhTxIDI98tF8DPl6nT28qQDi_9uzaz79Sz7F88C9hRM6hfkOnSMKY7OgR8p3mx69s0ui_N2HBT0Ftcmcyxiypesf5Qyg-PHYHsS44ffbkC4_XhZBeHO5c0M243rng3267lDB2w3T5d8urWDPnsZqrb90cVCdIsUk7rsZl_lZDt37_izTmfHhi.jpg",
+        "/flF0q0kHw9h-exf5dCV57Qud2-CzyDTPoZ9OMOHEwKO_zaVBvhp1meNaq6HCA5sTGjMSXVM4sKLWfhM0e01OnNqRD9uHlwEZmbJwbYfDB2_kltZ9PHwS26Xv_0XEqHEZiAyDyt0ENIRKIjqXbsdyTxRfXRgZSCgu05E6sMl7u9IlVgVkqVQWd-yhWYF4XV1Q.jpg",
+        "/V7YOyDn3Vo4JC54oLwNryLlFdZyDbOrCqS7s7sAc3VpfBIwZwTVFtWNZIEWIsorQxB7vX_vK6zycFcBxwe5qbN5Pwkkols82-F54ANlVKZ8IgF_UjcothDCAh5Nd7gc8ztnADy7LDbPfrApm7Pce9XUULe59DuqtKIEaWrdxdU6XyuPLqK-mneus1cjmJRmS.jpg",
+        "/yrSzqpk9FAjE51sBXHl0Uh95gYw7NSYu-dJm8ndgCFiY98qP8rthVqO8LhvrwiYeppQUdokCBHGYHQg23UKwlmnVT81vaK_3SOLF5jdKPjypIX9KMzfYDoV8mTSjaT3qWLXwFJIaQW5ZWyRYB9T7f4gBxQXZ1cRaPp21vUs8cLV3WSC6_6FrhbNUifWnJMU9.jpg",
+    ];
+
     return (
         <section className={s.property}>
+
             <div className={s.all}>
 
                 <motion.div
@@ -31,7 +45,6 @@ const Property = () => {
                         spaceBetween={20}
                         className={s.mySwiper}
                         loop={true}
-
                         autoplay={{
                             delay: 3000,
                             disableOnInteraction: false,
@@ -40,36 +53,56 @@ const Property = () => {
 
                         <SwiperSlide className={s.slide}>
                             <img
-                                src="/aaab60f0-97d6-46aa-97fa-807504b62433.png"
+                                src={images[0]}
                                 alt=""
+                                onClick={() => {
+                                    setIndex(0)
+                                    setOpen(true)
+                                }}
                             />
                         </SwiperSlide>
 
                         <SwiperSlide className={s.slide}>
                             <img
-                                src="/wAIKhOn7sDTvhTxIDI98tF8DPl6nT28qQDi_9uzaz79Sz7F88C9hRM6hfkOnSMKY7OgR8p3mx69s0ui_N2HBT0Ftcmcyxiypesf5Qyg-PHYHsS44ffbkC4_XhZBeHO5c0M243rng3267lDB2w3T5d8urWDPnsZqrb90cVCdIsUk7rsZl_lZDt37_izTmfHhi.jpg"
+                                src={images[1]}
                                 alt=""
+                                onClick={() => {
+                                    setIndex(1)
+                                    setOpen(true)
+                                }}
                             />
                         </SwiperSlide>
 
                         <SwiperSlide className={s.slide}>
                             <img
-                                src="/flF0q0kHw9h-exf5dCV57Qud2-CzyDTPoZ9OMOHEwKO_zaVBvhp1meNaq6HCA5sTGjMSXVM4sKLWfhM0e01OnNqRD9uHlwEZmbJwbYfDB2_kltZ9PHwS26Xv_0XEqHEZiAyDyt0ENIRKIjqXbsdyTxRfXRgZSCgu05E6sMl7u9IlVgVkqVQWd-yhWYF4XV1Q.jpg"
+                                src={images[2]}
                                 alt=""
+                                onClick={() => {
+                                    setIndex(2)
+                                    setOpen(true)
+                                }}
                             />
                         </SwiperSlide>
 
                         <SwiperSlide className={s.slide}>
                             <img
-                                src="/V7YOyDn3Vo4JC54oLwNryLlFdZyDbOrCqS7s7sAc3VpfBIwZwTVFtWNZIEWIsorQxB7vX_vK6zycFcBxwe5qbN5Pwkkols82-F54ANlVKZ8IgF_UjcothDCAh5Nd7gc8ztnADy7LDbPfrApm7Pce9XUULe59DuqtKIEaWrdxdU6XyuPLqK-mneus1cjmJRmS.jpg"
+                                src={images[3]}
                                 alt=""
+                                onClick={() => {
+                                    setIndex(3)
+                                    setOpen(true)
+                                }}
                             />
                         </SwiperSlide>
 
                         <SwiperSlide className={s.slide}>
                             <img
-                                src="/yrSzqpk9FAjE51sBXHl0Uh95gYw7NSYu-dJm8ndgCFiY98qP8rthVqO8LhvrwiYeppQUdokCBHGYHQg23UKwlmnVT81vaK_3SOLF5jdKPjypIX9KMzfYDoV8mTSjaT3qWLXwFJIaQW5ZWyRYB9T7f4gBxQXZ1cRaPp21vUs8cLV3WSC6_6FrhbNUifWnJMU9.jpg"
+                                src={images[4]}
                                 alt=""
+                                onClick={() => {
+                                    setIndex(4)
+                                    setOpen(true)
+                                }}
                             />
                         </SwiperSlide>
 
@@ -77,17 +110,13 @@ const Property = () => {
 
                 </motion.div>
 
-
                 <motion.div
                     className={s.texts}
                     initial={{ opacity: 0, x: 100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                     viewport={{ amount: 0.2 }}
-
                 >
-
-
 
                     <motion.h1>
                         {t("property8.featuresTitle")}
@@ -143,7 +172,9 @@ const Property = () => {
                             </motion.div>
 
                         </div>
+
                     </div>
+
                 </motion.div>
 
             </div>
@@ -158,6 +189,14 @@ const Property = () => {
                 <h1>{t("property8.aboutTitle")}</h1>
                 <p>{t("property8.aboutText")}</p>
             </motion.div>
+
+            {open && (
+                <GalleryModal
+                    images={images}
+                    activeIndex={index}
+                    onClose={() => setOpen(false)}
+                />
+            )}
 
         </section>
     )

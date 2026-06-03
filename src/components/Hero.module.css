@@ -1,6 +1,10 @@
 .hero {
+    position: relative;
+
     max-width: 1440px;
     width: 100%;
+
+    min-height: 100vh;
 
     margin: 100px auto;
 
@@ -13,11 +17,51 @@
     padding: 0 20px;
 
     box-sizing: border-box;
+
+    overflow: hidden;
+
+    border-radius: 32px;
 }
+
+
+.bgVideo {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -3;
+}
+
+
+.overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to right,
+            rgba(0, 0, 0, 0.82),
+            rgba(0, 0, 0, 0.55));
+
+    z-index: -2;
+}
+
+
 
 .text {
     flex: 1.2;
+
     width: 100%;
+    max-width: 700px;
+
+    position: relative;
+    z-index: 2;
 
     .titles {
 
@@ -40,7 +84,7 @@
             font-size: 16px;
             line-height: 150%;
 
-            color: var(--gray);
+            color: rgba(255, 255, 255, 0.75);
 
             max-width: 600px;
 
@@ -50,6 +94,8 @@
         }
     }
 }
+
+
 
 .btns {
     display: flex;
@@ -78,15 +124,17 @@
 
     height: 63px;
 
-    background: var(--dark-gray);
+    background: rgba(255, 255, 255, 0.08);
 
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
     color: var(--white);
 
     text-decoration: none;
 
     transition: 0.4s;
+
+    backdrop-filter: blur(10px);
 
     &:hover {
         color: var(--violet);
@@ -134,16 +182,23 @@
     }
 }
 
+
 .info {
     display: flex;
 
     gap: 30px;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
 }
 
 .card {
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
-    background-color: var(--black);
+    background: rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(12px);
 
     border-radius: 12px;
 
@@ -157,8 +212,6 @@
     justify-content: center;
 
     transition: 0.5s;
-
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 
     &:hover {
         transform: translateY(-10px);
@@ -186,116 +239,182 @@
         font-size: 18px;
         line-height: 150%;
 
-        color: var(--gray);
-    }
-}
-
-.imgg {
-    flex: 1;
-
-    max-width: 100%;
-
-    height: auto;
-
-    object-fit: cover;
-
-    border-radius: 16px;
-
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-
-    &[data-aos] {
-        transition-duration: 1500ms !important;
-    }
-}
-
-@media (min-width: 1000px) and (max-width: 1200px) {
-
-    .imgg {
-        min-width: 0;
-        max-width: 45%;
-        max-height: 500px;
-        width: auto;
-
-        object-fit: contain;
-    }
-}
-
-@media (max-width: 1000px) {
-
-    .hero {
-        flex-direction: column-reverse;
-
-        padding: 20px;
-
-        gap: 30px;
+        color: rgba(255, 255, 255, 0.7);
     }
 
     .imgg {
-        width: 100%;
-        height: auto;
-        max-height: 400px;
+        position: relative;
 
-        object-fit: cover;
-    }
+        z-index: 2;
 
-    .text {
-        margin-top: 0;
-        width: 100%;
-    }
-
-    .titles {
-
-        .titl {
-            font-size: 28px;
-        }
-    }
-
-    .btns {
-        flex-direction: row;
-        flex-wrap: wrap;
-
-        margin-bottom: 30px;
-    }
-
-    .link1,
-    .link2 {
-        width: auto;
         flex: 1;
 
-        min-width: 120px;
-    }
+        width: 100%;
+        max-width: 560px;
 
-    .info {
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        gap: 15px;
-    }
-
-    .card {
-        width: calc(50% - 10px);
+        min-width: 0;
 
         height: auto;
 
-        text-align: center;
+        object-fit: contain;
 
-        padding: 20px;
+        border-radius: 28px;
+
+        filter:
+            drop-shadow(0 25px 40px rgba(0, 0, 0, 0.45));
+
+        animation: float 5s ease-in-out infinite;
     }
-}
 
-@media (max-width: 600px) {
 
-    .card {
-        width: 100%;
-    }
-}
 
-@media (max-width: 576px) {
-    .hero {
-        .titles {
-            .titl {
-                font-size: 20px
-            }
+    @keyframes float {
+
+        0% {
+            transform: translateY(0px);
         }
+
+        50% {
+            transform: translateY(-12px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+
+    }
+
+
+
+    @media (max-width: 1100px) {
+
+        .hero {
+            flex-direction: column-reverse;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+            gap: 50px;
+
+            min-height: auto;
+        }
+
+        .text {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .titles {
+            width: 100%;
+        }
+
+        .titles .titl {
+            font-size: 32px;
+        }
+
+        .subtitle {
+            margin: 0 auto;
+        }
+
+        .btns {
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            margin-bottom: 30px;
+        }
+
+        .link1,
+        .link2 {
+            width: auto;
+
+            flex: 1;
+
+            min-width: 120px;
+        }
+
+        .info {
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+        }
+
+        .card {
+            width: calc(50% - 10px);
+
+            max-width: 220px;
+
+            height: auto;
+
+            text-align: center;
+
+            padding: 20px;
+        }
+
+        .imgg {
+            max-width: 500px;
+
+            width: 100%;
+        }
+
+    }
+
+
+
+    @media (max-width: 600px) {
+
+        .titles .titl {
+            font-size: 24px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+        }
+
+        .btns {
+            flex-direction: column;
+
+            width: 100%;
+        }
+
+        .link1,
+        .link2 {
+            width: 100%;
+
+            max-width: 100%;
+        }
+
+        .card {
+            width: 100%;
+        }
+
+        .imgg {
+            max-width: 100%;
+        }
+
+    }
+
+    @media (max-width: 576px) {
+
+        .hero {
+
+            .titles {
+
+                .titl {
+                    font-size: 20px;
+                }
+
+            }
+
+        }
+
     }
 }
