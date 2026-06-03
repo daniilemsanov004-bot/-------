@@ -1,6 +1,12 @@
 import s from './Property.module.css'
 import { motion } from "framer-motion"
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 
 const Property = () => {
 
@@ -19,13 +25,63 @@ const Property = () => {
             <div className={s.all}>
 
                 <motion.img
-                    src="/495c8c25-fc6c-43c7-9096-aa7ff174a0b7.png"
                     alt=""
                     initial={{ opacity: 0, x: -100 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                     viewport={{ amount: 0.2 }}
                 />
+                <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation={true}
+                    pagination={{ clickable: true }}
+                    slidesPerView={1}
+                    spaceBetween={20}
+                    className={s.mySwiper}
+                    loop={true}
+
+                    autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    }}
+                >
+
+                    <SwiperSlide className={s.slide}>
+                        <img
+                            src="/495c8c25-fc6c-43c7-9096-aa7ff174a0b7.png"
+                            alt=""
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide className={s.slide}>
+                        <img
+                            src="/YPohWtlamxLknR_UYB6juVVhT6XRWvKwKSC5nzEnL-rHeqJGD175Fp9ujPlkkVnpWySf6kdJEUI2anHWpB_ei0LFh6vk710Av2ndpmtamQyGys2mtyBZppNYtmnDwNWQFEfSh0RjKlBlV3RjS-thRcEx8zNQ5iIobsb1E6QyYRHvLJFKrL-pXO3vCLYp0Xgm.jpg"
+                            alt=""
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide className={s.slide}>
+                        <img
+                            src="/4UV44NVzBwvNCTFIOjCVPMsB8WgbgXEHstNlGspPIxycBKSrTQLiftc14qIjSagOKATCuQvcdFA1khvn9OifTvQI_MMAgEvPSo8uaQIo9SGtbH2GyHQlJp8J8VKYs77Cym3B6__bvlS7ehqOGP_fk3uHtN6H6_3BMmcsLssrkyT3qhVDyMSmq7xJruul3HbJ.jpg"
+                            alt=""
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide className={s.slide}>
+                        <img
+                            src="/efoQHcM27OvNX0NQWPWGq2i3BxVpoE2hn47eD6JHXi9Ag0PywSTPtvzrDbSOlgbqhhB6d9UdJNbdnaqzeBFIWi964bkUoEa3XeW_H3CCxI6hY12cei_Ur6YYPkmEK1uF3fsePWl-zc5w-1pzP983dQdaHq8XcDMgGTgEUwuU7MPwXer9V2wVoXwDf_sytvEL.jpg"
+                            alt=""
+                        />
+                    </SwiperSlide>
+
+                    <SwiperSlide className={s.slide}>
+                        <img
+                            src="/jRLvWS4tJUcC2Q3Y3MAU3si0qBXIxFUbUInQD71rB9tXujY8BCET4ZCQNoZnqTUPbAFtnBsrm6yDnZpqJzDlVFYHfJSx8HuqSlqfedtkC0_dtJNGXukRcDYNTW6gWYWDtq7X01ShJzVAvsH8XP8M0mACGPmskg-X0gohnwdb8uZdNi6xd33rGoOl3ZC5kL6z.jpg"
+                            alt=""
+                        />
+                    </SwiperSlide>
+
+                </Swiper>
 
                 <motion.div
                     className={s.texts}
