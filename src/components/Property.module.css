@@ -6,7 +6,6 @@
     padding: 0 20px;
 
     position: relative;
-    overflow: hidden;
 
     &::before {
         content: "";
