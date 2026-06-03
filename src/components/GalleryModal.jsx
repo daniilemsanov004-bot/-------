@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
-import { createPortal } from "react-dom";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,6 +15,14 @@ const GalleryModal = ({
     activeIndex,
     onClose
 }) => {
+
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) return null;
 
     return createPortal(
 
@@ -66,4 +76,4 @@ const GalleryModal = ({
     )
 }
 
-export default GalleryModal
+export default GalleryModal;
